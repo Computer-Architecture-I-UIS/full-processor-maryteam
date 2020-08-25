@@ -111,6 +111,32 @@ val ins=Instructions
 		is(ins.sltiu){    // smaller than unsigned
 			io.out := Mux(io.in1 < io.in2, 1.U, 0.U)
 		}
+		
+		
+		
+		is(ins.beq){	// equal to
+			io.out := Mux(io.in1 === io.in2, 1.U, 0.U)	
+		}
+
+		is(ins.bne){	// not equal to
+			io.out := Mux(io.in1 === io.in2, 0.U, 1.U)
+		}	
+		
+		is(ins.blt){	// smaller than
+			io.out := (io.in1.asSInt < io.in2.asSInt).asUInt
+		}	
+
+		is(ins.bge){	// greater or equal to
+			io.out := (io.in1.asSInt < io.in2.asSInt).asUInt  ^ 1.U
+		}	
+		
+		is(ins.bltu){	// smaller than unsigned
+			io.out := Mux(io.in1 < io.in2, 1.U, 0.U)
+		}	
+
+		is(ins.bgeu){   // greater or equal to unsigned
+			io.out := Mux(io.in1 < io.in2, 0.U, 1.U) 
+		}
 
 
 	}
