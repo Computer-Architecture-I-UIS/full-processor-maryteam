@@ -25,17 +25,13 @@ visualizar las salida del procesador en el GTK Wave
 
 COMENTARIOS
 ----------------------
-1. Se tuvo que realizar contador para colocar un elemento de control.
+1. Se realizo la correcion de los archivos del procesador(taller anterior), para corregir los bug en la salida, los cuales hacia que los corrieran y la salida se activara antes de tiempo mostrando por un pequeno instante un valor de salida erroneo.
 
-2. El procesador se demora 4 ciclos de reloj en realizar una operación.
+2. El procesador se demora 1 ciclo de reloj en realizar una operación.
 
 3. Es necesario escribir las instrucciones dentro del archivo ```TOP.scala```.
 
-4. No se encontró una forma para realizar las operaciones ```lui``` y ```auipc``` dentro de los 4 ciclos de reloj necesarios para cada operación.
-
-5. El valor de operacion queda listo para leer en la salida solo luego de 4 ciclos de salida.
-
-
+4. Ahora el procesador a ser completo permite las instrucciones de saltos de registro y de carga y lectura de una memoria.
 
 
 
@@ -60,6 +56,22 @@ Puede ejecutar:
 - ```slt``` - set
 - ```sltu``` - set immediate
 - ```slti``` - set unsigned
+- ```sltiu``` - set immediate unsigned
+- ```lb``` - set immediate unsigned
+- ```sltiu``` - set immediate unsigned
+- ```sltiu``` - set immediate unsigned
+- ```sltiu``` - set immediate unsigned
+- ```sltiu``` - set immediate unsigned
+- ```sltiu``` - set immediate unsigned
+- ```sltiu``` - set immediate unsigned
+- ```sltiu``` - set immediate unsigned
+- ```sltiu``` - set immediate unsigned
+- ```sltiu``` - set immediate unsigned
+- ```sltiu``` - set immediate unsigned
+- ```sltiu``` - set immediate unsigned
+- ```sltiu``` - set immediate unsigned
+- ```sltiu``` - set immediate unsigned
+- ```sltiu``` - set immediate unsigned
 - ```sltiu``` - set immediate unsigned
 
 No puede ejecutar
