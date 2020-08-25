@@ -82,7 +82,9 @@ No puede ejecutar
 RESULTADOS
 ----------
 Instrucciones y simulación 1
-```program
+```
+/* program
+addi x1 
 addi
 ```
 ![programa cargado](https://github.com/Computer-Architecture-I-UIS/full-processor-maryteam/blob/master/prog1.png)
