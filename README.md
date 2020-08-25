@@ -1,6 +1,6 @@
  Mary Zuleika Jimenez Diaz 2150952 - Camilo Santamaria 2145548 - Alejandro Navarro Luna 2160472/ MARYTEAM 
 ================
-PROCESADOR
+PROCESADOR FULL
 ================
 
 DIAGRAMA DE BLOQUES
@@ -14,11 +14,10 @@ DIAGRAMA DE BLOQUES
 
 DESCRIPCIÓN
 ----------------
+Para la implementacion del prosesador full o completo se usaron los archivos realizados para el taller anterior(Procesador), se realizo la modificacion de los modulos TOP, ALU y instDeco, y se agregaron los bloques de Control y memo, para implementar las nuevas intrucciones risc-v requeridas, jumps(saltos de registro), branches(saltos por comparacion de archivos), loads(lectura de memoria) y store(escritura de memoria).
 
-Para la simulación y puesta en marcha del procesador se usarón 3 archivos, en los cuales podemos destacar
-el decodificador dado a nuestra disposición para el desarrollo de la actividad  (archivo InstDeco). Se emplearón los archivos de ALU (Unidad Logica de Aritmetica), la cual permitia hacer operaciones basicas como la adición,la sustración el corrimiento de bits la comparación de variables entre otras. Finalmente el archivo TOP, en este se encuentran los otros bloques lógicos del diagrama. Se inicializa una banco de registros de 32 direcciones con un tamaño de palabra de 32 bits. También se encuentra la "memoria de instrucciones". 
-
-En el archivo TOP se colocan las instrucciones del programa dentro de la estructura ```when ...  .elsewhen``` la cual actúa como un multiplexor. El archivo ALU utiliza el ```opcode```, ```funct3``` y ```funct7``` de las palabras de 32 bits de RISC-V para determinar la operación correspondiente. 
+Para la simulación y puesta en marcha del procesador se usarón _ archivos, en los cuales podemos destacar
+el decodificador dado a nuestra disposición para el desarrollo de la actividad  (archivo InstDeco). Se emplearón los archivos de ALU (Unidad Logica de Aritmetica), la cual permitia hacer operaciones basicas como la adición,la sustración el corrimiento de bits, la comparación de variables entre otras.El archivo control permite los saltos de registro, controla los branches y los jumps.En memo se realiza el contro de la memoria y la memoria, permite hacer los loads y store. En el archivo TOP, en este se encuentran los otros bloques lógicos del diagrama, como son los jumps. Se inicializa una banco de registros de 32 direcciones con un tamaño de palabra de 32 bits. También se encuentra la "memoria de instrucciones", se encarga de cargar las intrucciones a simular en el procesador full. 
 
 Los módulos en scala se situan dentro de un archivo TOP el cual une los archivos nombrados
 anteriormente y con esto podemos simular y generar el  archivo en vivado que se usó para generar el testbench para 
