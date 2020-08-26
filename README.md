@@ -100,7 +100,12 @@ srli x6,x2,1
 
 Instrucciones y simulación  2
 
+<p align="center">
+  <img src="https://github.com/Computer-Architecture-I-UIS/assembler-c-programming-maryteam/blob/master/prog1.png" />
+</p>
 
-
+<p align="center">
+  <img src="https://github.com/Computer-Architecture-I-UIS/assembler-c-programming-maryteam/blob/master/gtk1.png" />
+</p>
 
 Instrucciones y simulación 3 
