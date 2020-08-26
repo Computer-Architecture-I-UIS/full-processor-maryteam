@@ -58,21 +58,22 @@ Puede ejecutar:
 - ```slti``` - set unsigned
 - ```sltiu``` - set immediate unsigned
 - ```lb``` - set immediate unsigned
-- ```sltiu``` - set immediate unsigned
-- ```sltiu``` - set immediate unsigned
-- ```sltiu``` - set immediate unsigned
-- ```sltiu``` - set immediate unsigned
-- ```sltiu``` - set immediate unsigned
-- ```sltiu``` - set immediate unsigned
-- ```sltiu``` - set immediate unsigned
-- ```sltiu``` - set immediate unsigned
-- ```sltiu``` - set immediate unsigned
-- ```sltiu``` - set immediate unsigned
-- ```sltiu``` - set immediate unsigned
-- ```sltiu``` - set immediate unsigned
-- ```sltiu``` - set immediate unsigned
-- ```sltiu``` - set immediate unsigned
-- ```sltiu``` - set immediate unsigned
+- ```beq``` - branch =
+- ```bne``` - branch ≠
+- ```blt``` - branch <
+- ```bge``` - branch ≥
+- ```bltu``` - branch < unsigned
+- ```bgeu```  - branch ≥ unsigned
+- ```jal``` - j&l
+- ```jalr``` - jump & link register
+- ```lb``` - load byte
+- ```lh``` - load halfword
+- ```lbu``` - load byte unsigned
+- ```lhu``` - load half unsigned
+- ```lw``` - load word
+- ```sb``` - store byte
+- ```sh``` - store halfword
+- ```sw``` - store word
 
 No puede ejecutar
 - ```lui``` - load upper immediate
