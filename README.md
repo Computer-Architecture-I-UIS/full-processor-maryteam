@@ -74,8 +74,6 @@ Puede ejecutar:
 - ```sb``` - store byte
 - ```sh``` - store halfword
 - ```sw``` - store word
-
-No puede ejecutar
 - ```lui``` - load upper immediate
 - ```auipc``` - add upper immediate to PC
 
@@ -84,18 +82,19 @@ RESULTADOS
 ----------
 Instrucciones y simulación 1
 ```
-/* program
-addi x1,x0,1
-addi x2,x0,2
-addi x3,x0,3
-add x4,x2,x3
-add x4,x4 x1
-slli x5,x2,1
-srli x6,x2,1
-*\
+Programa:
+	addi x1,x0,1
+	addi x2,x0,2
+	addi x3,x0,3
+	sw x1,0(x1)
+	sw x2,0(x2)
+	sw x3,0(x3)
+	lw x4,0(x1)
+	lw x5,0(x2)
+	lw x6,0(x3)
 ```
 
-![programa cargado](https://github.com/Computer-Architecture-I-UIS/full-processor-maryteam/blob/master/gtk1.png)
+![programa sw lw](https://github.com/Computer-Architecture-I-UIS/full-processor-maryteam/blob/master/gtk_lw_sw.png)
 
 
 
@@ -103,33 +102,46 @@ srli x6,x2,1
 Instrucciones y simulación 2
 
 ```
-/* program
-addi x1,x0,1
-addi x2,x0,2
-addi x3,x0,3
-addi x1,x0,4
-addi x2,x0,5
-addi x3,x0,6
-bne x1,x2,-6
-*\
+Programa:
+	addi x1,x0,1
+	addi x2,x0,2
+	addi x3,x0,3
+	addi x1,x0,4
+	addi x2,x0,5
+	addi x3,x0,6
+	bne x1,x2,-6
 ```
 
-![gtk_bne](https://user-images.githubusercontent.com/67715438/91325466-d5fe4200-e788-11ea-973b-5c050e581592.png)
+![programa branch](https://github.com/Computer-Architecture-I-UIS/full-processor-maryteam/blob/master/gtk_branch.png)
 
 Instruciones y simulación 3
 
 
 
 ```
-/* program
-addi x1,x0,1
-addi x2,x0,2
-addi x3,x0,3
-addi x1,x0,4
-addi x2,x0,5
-addi x3,x0,6
-jalr x1,-6
-*\
+Programa:
+ addi x1,x0,1
+	addi x2,x0,2
+	addi x3,x0,3
+	addi x1,x0,4
+	addi x2,x0,5
+	addi x3,x0,6
+	jal x4,-6
 ```
 
-![gtk_jalr](https://user-images.githubusercontent.com/67715438/91325475-d8609c00-e788-11ea-910e-c3e4dd2d68a0.png)
+![gtk_jal](https://github.com/Computer-Architecture-I-UIS/full-processor-maryteam/blob/master/gtk_jal.png)
+
+
+```
+Programa:
+ addi x1,x0,1
+	addi x2,x0,2
+	addi x3,x0,3
+	add x4,x2,x3
+	add x4,x4,x1
+	add x4,x4,x1
+	slli x5,x2,1
+	srli x6,x2,1
+```
+
+![gtk_1](https://github.com/Computer-Architecture-I-UIS/full-processor-maryteam/blob/master/gtk1.png)
