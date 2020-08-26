@@ -47,7 +47,6 @@ class TOP extends Module{
 	} .otherwise{
 		ALU.io.in2 := 0.U
 	}
-	//ALU.io.in2   := Mux(control.io.muxALUin2, RegOfVec(InstDeco.io.rs2), InstDeco.io.imm.asUInt) //multiplexor del ALU
 	io.out       := ALU.io.out
 	
 	//inicializar señales de la memoria
@@ -91,39 +90,15 @@ class TOP extends Module{
 	
 	//Multiplexor para el write enable de Memo
 	Memo.io.wen := Mux(control.io.muxwen===1.U, 1.U, 0.U)
-	/*
-	when(control.io.muxwen===1.U){
-		Memo.io.wen := 1.U
-	} .otherwise{
-		Memo.io.wen := 0.U
-	}*/
 	
 	//Multiplexor para el read enable de Memo
 	Memo.io.ren := Mux(control.io.muxren===1.U, 1.U, 0.U)
-	/*
-	when(control.io.muxren===1.U){
-		Memo.io.ren := 1.U
-	} .otherwise{
-		Memo.io.ren := 0.U
-	}*/
 	
 	//Multiplexor para el write address de Memo
 	Memo.io.wrAddr := Mux(control.io.muxwrAddr===1.U, RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt, 0.U)
-	/*
-	when(control.io.muxwrAddr ===1.U){
-		Memo.io.wrAddr := RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt
-	} .otherwise{
-		Memo.io.wrAddr := 0.U
-	}*/
 	
 	//Multiplexor para el read address de Memo
 	Memo.io.rdAddr := Mux(control.io.muxrdAddr===1.U, RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt, 0.U)
-	/*
-	when(control.io.muxrdAddr ===1.U){
-		Memo.io.rdAddr := RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt
-	} .otherwise{
-		Memo.io.rdAddr := 0.U
-	}*/
 	
 	//Multiplexor para write data de Memo
 	when(control.io.muxwrData===0.U){
@@ -137,54 +112,6 @@ class TOP extends Module{
 	}
 	
 	
-	
-	/*																																																																																							
-	when(InstDeco.io.state===ins.jal){
-		RegOfVec(InstDeco.io.rd) := addrI + 1.U;
-		//addrI := addrI + InstDeco.io.imm.asUInt
-	} .elsewhen(InstDeco.io.state===ins.jalr){
-		RegOfVec(InstDeco.io.rd) := addrI + 1.U
-		//addrI := Cat((RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt)(31,1),0.U(1.W))
-	} .elsewhen(InstDeco.io.state===ins.sw){
-		Memo.io.wen := 1.U
-		Memo.io.wrAddr := RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt
-		Memo.io.wrData := RegOfVec(InstDeco.io.rs2)
-		//addrI := addrI + 1.U
-	} .elsewhen(InstDeco.io.state===ins.sh){
-		Memo.io.wen := 1.U
-		Memo.io.wrAddr := RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt
-		Memo.io.wrData := RegOfVec(InstDeco.io.rs2)(15,0)
-		//addrI := addrI + 1.U
-	} .elsewhen(InstDeco.io.state===ins.sb){
-		Memo.io.wen := 1.U
-		Memo.io.wrAddr := RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt
-		Memo.io.wrData := RegOfVec(InstDeco.io.rs2)(7,0)
-		//addrI := addrI + 1.U
-	} .elsewhen(InstDeco.io.state===ins.lw){
-		Memo.io.ren := 1.U
-		Memo.io.rdAddr := RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt
-		RegOfVec(InstDeco.io.rd) := Memo.io.rdData
-		//addrI := addrI + 1.U
-	} .elsewhen(InstDeco.io.state===ins.lb || InstDeco.io.state===ins.lbu){
-		Memo.io.ren := 1.U
-		Memo.io.rdAddr := RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt
-		RegOfVec(InstDeco.io.rd) := Memo.io.rdData(7,0)
-		//addrI := addrI + 1.U
-	} .elsewhen(InstDeco.io.state===ins.lh || InstDeco.io.state===ins.lhu){
-		Memo.io.ren := 1.U
-		Memo.io.rdAddr := RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt
-		RegOfVec(InstDeco.io.rd) := Memo.io.rdData(15,0)
-		//addrI := addrI + 1.U
-	} .elsewhen(InstDeco.io.state===ins.lui){
-		RegOfVec(InstDeco.io.rd) := InstDeco.io.imm.asUInt
-		//addrI := addrI + 1.U
-	} .elsewhen(InstDeco.io.state===ins.auipc){
-		RegOfVec(InstDeco.io.rd) := addrI + InstDeco.io.imm.asUInt
-		//addrI := addrI + 1.U
-	} .otherwise{
-		RegOfVec(InstDeco.io.rd) := ALU.io.out
-		//addrI := addrI + 1.U
-	}*/
 	
 	
 }
@@ -202,69 +129,6 @@ object TOPMain extends App
 
 
 
-/*
-
-OLD CONTROL
-
-
-
-when( (InstDeco.io.state===ins.bne || InstDeco.io.state===ins.beq || InstDeco.io.state===ins.blt || InstDeco.io.state===ins.bge || InstDeco.io.state===ins.bltu || InstDeco.io.state===ins.bgeu)   &&    ALU.io.out===1.U){
-		addrI := addrI + InstDeco.io.imm.asUInt
-	} .elsewhen( (InstDeco.io.state===ins.bne || InstDeco.io.state===ins.beq || InstDeco.io.state===ins.blt || InstDeco.io.state===ins.bge || InstDeco.io.state===ins.bltu || InstDeco.io.state===ins.bgeu)   &&    ALU.io.out===0.U  ){
-		addrI := addrI + 1.U
-	} .elsewhen(InstDeco.io.state===ins.jal){
-		RegOfVec(InstDeco.io.rd) := addrI + 1.U;
-		addrI := addrI + InstDeco.io.imm.asUInt
-	} .elsewhen(InstDeco.io.state===ins.jalr){
-		RegOfVec(InstDeco.io.rd) := addrI + 1.U
-		addrI := Cat((RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt)(31,1),0.U(1.W))
-	} .elsewhen(InstDeco.io.state===ins.sw){
-		Memo.io.wen := 1.U
-		Memo.io.wrAddr := RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt
-		Memo.io.wrData := RegOfVec(InstDeco.io.rs2)
-		addrI := addrI + 1.U
-	} .elsewhen(InstDeco.io.state===ins.sh){
-		Memo.io.wen := 1.U
-		Memo.io.wrAddr := RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt
-		Memo.io.wrData := RegOfVec(InstDeco.io.rs2)(15,0)
-		addrI := addrI + 1.U
-	} .elsewhen(InstDeco.io.state===ins.sw){
-		Memo.io.wen := 1.U
-		Memo.io.wrAddr := RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt
-		Memo.io.wrData := RegOfVec(InstDeco.io.rs2)(7,0)
-		addrI := addrI + 1.U
-	} .elsewhen(InstDeco.io.state===ins.lw){
-		Memo.io.ren := 1.U
-		Memo.io.rdAddr := RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt
-		RegOfVec(InstDeco.io.rd) := Memo.io.rdData
-		addrI := addrI + 1.U
-	} .elsewhen(InstDeco.io.state===ins.lb || InstDeco.io.state===ins.lbu){
-		Memo.io.ren := 1.U
-		Memo.io.rdAddr := RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt
-		RegOfVec(InstDeco.io.rd) := Memo.io.rdData(7,0)
-		addrI := addrI + 1.U
-	} .elsewhen(InstDeco.io.state===ins.lh || InstDeco.io.state===ins.lhu){
-		Memo.io.ren := 1.U
-		Memo.io.rdAddr := RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt
-		RegOfVec(InstDeco.io.rd) := Memo.io.rdData(15,0)
-		addrI := addrI + 1.U
-	} .elsewhen(InstDeco.io.state===ins.lui){
-		RegOfVec(InstDeco.io.rd) := InstDeco.io.imm.asUInt
-		addrI := addrI + 1.U
-	} .elsewhen(InstDeco.io.state===ins.auipc){
-		RegOfVec(InstDeco.io.rd) := addrI + InstDeco.io.imm.asUInt
-		addrI := addrI + 1.U
-	} .otherwise{
-		RegOfVec(InstDeco.io.rd) := ALU.io.out
-		addrI := addrI + 1.U
-	}
-
-
-
-
-
-
-*/
 
 
 
