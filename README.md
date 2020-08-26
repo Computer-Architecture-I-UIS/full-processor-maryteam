@@ -92,8 +92,8 @@ add x4,x2,x3
 add x4,x4 x1
 slli x5,x2,1
 srli x6,x2,1
+*\
 ```
-![programa cargado](https://github.com/Computer-Architecture-I-UIS/full-processor-maryteam/blob/master/prog1.png)
 
 ![programa cargado](https://github.com/Computer-Architecture-I-UIS/full-processor-maryteam/blob/master/gtk1.png)
 
