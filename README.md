@@ -85,8 +85,13 @@ RESULTADOS
 Instrucciones y simulación 1
 ```
 /* program
-addi x1 
-addi
+addi x1,x0,1
+addi x2,x0,2
+addi x3,x0,3
+add x4,x2,x3
+add x4,x4 x1
+slli x5,x2,1
+srli x6,x2,1
 ```
 ![programa cargado](https://github.com/Computer-Architecture-I-UIS/full-processor-maryteam/blob/master/prog1.png)
 
