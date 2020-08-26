@@ -39,8 +39,8 @@ class TOP extends Module{
 	
 	//operacion del ALU
 	ALU.io.state := InstDeco.io.state
-	ALU.io.in1   := RegOfVec(InstDeco.io.rs1) 
-	when(control.io.muxALUin2===2.U){
+	ALU.io.in1   := Mux(control.io.muxALUin1, RegOfVec(InstDeco.io.rs1), 0.U)
+	when(control.io.muxALUin2===2.U){//multiplexor de control in2
 		ALU.io.in2 := RegOfVec(InstDeco.io.rs2)
 	} .elsewhen(control.io.muxALUin2===1.U){
 		ALU.io.in2 := InstDeco.io.imm.asUInt
@@ -51,14 +51,15 @@ class TOP extends Module{
 	io.out       := ALU.io.out
 	
 	//inicializar señales de la memoria
-	
 	Memo.io.wen := 0.U(1.W)
 	Memo.io.ren := 0.U(1.W)
 	Memo.io.wrAddr := 0.U(8.W)
 	Memo.io.wrData := 0.U(32.W)
 	Memo.io.rdAddr := 0.U(8.W)
 	
-	//otros multiplexores 
+	//Multiplexores de control//
+	
+	//Multiplexor para program counter (addrI)
 	when(control.io.muxAddrI===0.U){
 		addrI := addrI + 1.U
 	} .elsewhen(control.io.muxAddrI===1.U){
@@ -69,6 +70,7 @@ class TOP extends Module{
 		addrI := Mux(ALU.io.out===1.U, addrI + InstDeco.io.imm.asUInt, addrI + 1.U)
 	}
 	
+	//Multiplexor para el banco de registros
 	when(control.io.muxRegOfVec===0.U){
 		RegOfVec(InstDeco.io.rd) := addrI + 1.U
 	} .elsewhen(control.io.muxRegOfVec===1.U){
@@ -87,6 +89,7 @@ class TOP extends Module{
 		RegOfVec(0) := 0.U
 	}
 	
+	//Multiplexor para el write enable de Memo
 	Memo.io.wen := Mux(control.io.muxwen===1.U, 1.U, 0.U)
 	/*
 	when(control.io.muxwen===1.U){
@@ -94,6 +97,8 @@ class TOP extends Module{
 	} .otherwise{
 		Memo.io.wen := 0.U
 	}*/
+	
+	//Multiplexor para el read enable de Memo
 	Memo.io.ren := Mux(control.io.muxren===1.U, 1.U, 0.U)
 	/*
 	when(control.io.muxren===1.U){
@@ -101,6 +106,8 @@ class TOP extends Module{
 	} .otherwise{
 		Memo.io.ren := 0.U
 	}*/
+	
+	//Multiplexor para el write address de Memo
 	Memo.io.wrAddr := Mux(control.io.muxwrAddr===1.U, RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt, 0.U)
 	/*
 	when(control.io.muxwrAddr ===1.U){
@@ -108,6 +115,8 @@ class TOP extends Module{
 	} .otherwise{
 		Memo.io.wrAddr := 0.U
 	}*/
+	
+	//Multiplexor para el read address de Memo
 	Memo.io.rdAddr := Mux(control.io.muxrdAddr===1.U, RegOfVec(InstDeco.io.rs1) + InstDeco.io.imm.asUInt, 0.U)
 	/*
 	when(control.io.muxrdAddr ===1.U){
@@ -116,6 +125,7 @@ class TOP extends Module{
 		Memo.io.rdAddr := 0.U
 	}*/
 	
+	//Multiplexor para write data de Memo
 	when(control.io.muxwrData===0.U){
 		Memo.io.wrData := RegOfVec(InstDeco.io.rs2)
 	} .elsewhen(control.io.muxwrData===1.U){
