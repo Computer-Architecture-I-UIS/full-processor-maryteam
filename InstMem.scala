@@ -13,15 +13,16 @@ io.instruc:=0.U
 
 
 /*
-Programa jalr
+Programa primero para probar el procesador
 	
 	addi x1,x0,1
 	addi x2,x0,2
 	addi x3,x0,3
-	addi x1,x0,4
-	addi x2,x0,5
-	addi x3,x0,6
-	jalr x4,-6
+	add x4,x2,x3
+	add x4,x4,x1
+	add x4,x4,x1
+	slli x5,x2,1
+	srli x6,x2,1
 	
 */
 
@@ -35,19 +36,19 @@ when (io.addrI === 0.U){
 	io.instruc := "b000000000011_00000_000_00011_0010011".U
 	}
 	.elsewhen (io.addrI === 3.U) {
-	io.instruc := "b000000000100_00000_000_00001_0010011".U
+	io.instruc := "b000000000011_00010_000_00100_0110011".U
 	}
 	.elsewhen (io.addrI === 4.U) {
-	io.instruc := "b000000000101_00000_000_00010_0010011".U
+	io.instruc := "b000000000001_00100_000_00100_0110011".U
 	}
 	.elsewhen (io.addrI === 5.U) {
-	io.instruc := "b000000000110_00000_000_00011_0010011".U
+	io.instruc := "b000000000001_00100_000_00100_0110011".U
 	}
 	.elsewhen (io.addrI === 6.U) {
-	io.instruc := "b111111111100_00001_000_00100_1100111".U  //offset = -6 entonces pc=0 (reinicia)
+	io.instruc := "b000000000001_00010_001_00101_0010011".U
 	}
 	.elsewhen (io.addrI === 7.U) {
-	io.instruc := "b000000000000_00000_000_00000_0010011".U
+	io.instruc := "b000000000001_00010_101_00110_0010011".U
 	}
 	.elsewhen (io.addrI === 8.U) {
 	io.instruc := "b000000000000_00000_000_00000_0010011".U
@@ -131,6 +132,88 @@ when (io.addrI === 0.U){
 
 
 
+
+
+/*
+Programa sw, lw
+	
+	addi x1,x0,1
+	addi x2,x0,2
+	addi x3,x0,3
+	sw x1,0(x1)
+	sw x2,0(x2)
+	sw x3,0(x3)
+	lw x4,0(x1)
+	lw x5,0(x2)
+	lw x6,0(x3)
+	
+*/
+
+when (io.addrI === 0.U){
+	io.instruc := "b000000000001_00000_000_00001_0010011".U
+	}
+	.elsewhen (io.addrI === 1.U) {
+	io.instruc := "b000000000010_00000_000_00010_0010011".U
+	}
+	.elsewhen (io.addrI === 2.U) {
+	io.instruc := "b000000000011_00000_000_00011_0010011".U
+	}
+	.elsewhen (io.addrI === 3.U) {
+	io.instruc := "b0000000_00001_00001_010_00000_0100011".U
+	}
+	.elsewhen (io.addrI === 4.U) {
+	io.instruc := "b0000000_00010_00010_010_00000_0100011".U
+	}
+	.elsewhen (io.addrI === 5.U) {
+	io.instruc := "b0000000_00011_00011_010_00000_0100011".U
+	}
+	.elsewhen (io.addrI === 6.U) {
+	io.instruc := "b000000000000_00001_010_00100_0000011".U  
+	}
+	.elsewhen (io.addrI === 7.U) {
+	io.instruc := "b000000000000_00010_010_00101_0000011".U
+	}
+	.elsewhen (io.addrI === 8.U) {
+	io.instruc := "b000000000000_00011_010_00110_0000011".U
+	}
+
+
+
+/*
+Programa jalr
+	
+	addi x1,x0,1
+	addi x2,x0,2
+	addi x3,x0,3
+	addi x1,x0,4
+	addi x2,x0,5
+	addi x3,x0,6
+	jalr x4,-4
+	
+*/
+
+when (io.addrI === 0.U){
+	io.instruc := "b000000000001_00000_000_00001_0010011".U
+	}
+	.elsewhen (io.addrI === 1.U) {
+	io.instruc := "b000000000010_00000_000_00010_0010011".U
+	}
+	.elsewhen (io.addrI === 2.U) {
+	io.instruc := "b000000000011_00000_000_00011_0010011".U
+	}
+	.elsewhen (io.addrI === 3.U) {
+	io.instruc := "b000000000100_00000_000_00001_0010011".U
+	}
+	.elsewhen (io.addrI === 4.U) {
+	io.instruc := "b000000000101_00000_000_00010_0010011".U
+	}
+	.elsewhen (io.addrI === 5.U) {
+	io.instruc := "b000000000110_00000_000_00011_0010011".U
+	}
+	.elsewhen (io.addrI === 6.U) {
+	io.instruc := "b111111111100_00001_000_00100_1100111".U  //offset = -6 entonces pc=0 (reinicia)
+	}
+
 /*
 Programa jal
 	
@@ -177,7 +260,7 @@ Programa para probar bne (branches)
 	addi x1,x0,4
 	addi x2,x0,5
 	addi x3,x0,6
-	beq x1,x2,-6
+	bne x1,x2,-6
 	
 */
 
