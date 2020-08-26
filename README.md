@@ -102,3 +102,9 @@ Instrucciones y simulación  2
 
 ![gtk1](https://user-images.githubusercontent.com/67715438/91325303-a0f1ef80-e788-11ea-8b4d-1cdf1b87c2b7.png)
 Instrucciones y simulación 3 
+
+
+![gtk_bne](https://user-images.githubusercontent.com/67715438/91325466-d5fe4200-e788-11ea-973b-5c050e581592.png)
+
+Instruciones y simulación 4 
+![gtk_jalr](https://user-images.githubusercontent.com/67715438/91325475-d8609c00-e788-11ea-910e-c3e4dd2d68a0.png)
