@@ -98,24 +98,9 @@ srli x6,x2,1
 ![programa cargado](https://github.com/Computer-Architecture-I-UIS/full-processor-maryteam/blob/master/gtk1.png)
 
 
-Instrucciones y simulación  2
 
 
-```
-/* program
-addi x1,x0,1
-addi x2,x0,2
-addi x3,x0,3
-add x4,x2,x3
-add x4,x4 x1
-slli x5,x2,1
-srli x6,x2,1
-*\
-```
-
-![gtk1](https://user-images.githubusercontent.com/67715438/91325303-a0f1ef80-e788-11ea-8b4d-1cdf1b87c2b7.png)
-
-Instrucciones y simulación 3 
+Instrucciones y simulación 2
 
 ```
 /* program
@@ -131,7 +116,7 @@ bne x1,x2,-6
 
 ![gtk_bne](https://user-images.githubusercontent.com/67715438/91325466-d5fe4200-e788-11ea-973b-5c050e581592.png)
 
-Instruciones y simulación 4 
+Instruciones y simulación 3
 
 
 
@@ -145,4 +130,6 @@ addi x2,x0,5
 addi x3,x0,6
 jalr x1,-6
 *\
+```
+
 ![gtk_jalr](https://user-images.githubusercontent.com/67715438/91325475-d8609c00-e788-11ea-910e-c3e4dd2d68a0.png)
