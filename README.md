@@ -14,18 +14,15 @@ DIAGRAMA DE BLOQUES
 
 DESCRIPCIÓN
 ----------------
-Para la implementacion del prosesador full o completo se usaron los archivos realizados para el taller anterior(Procesador), se realizo la modificacion de los modulos TOP, ALU, InstruccionMemo y instDeco, y se agregaron los bloques de Control y memo, para implementar las nuevas intrucciones risc-v requeridas, jumps(saltos de registro), branches(saltos por comparacion de archivos), loads(lectura de memoria) y store(escritura de memoria).
+Para la implementación del prosesador full o completo se usaron los archivos realizados para el taller anterior (Procesador). Se realizó la modificación de los módulos ```TOP```, ```ALU```, ```InstMemo``` y ```InstDeco```, y se agregaron los bloques de ```control``` y ```Memo```, para implementar las nuevas intrucciones risc-v requeridas; jumps (saltos de registro), branches (saltos por comparacion de datos), loads (lectura de memoria) y stores (escritura de memoria).
 
-Para la simulación y puesta en marcha del procesador se usarón 6 archivos, en los cuales podemos destacar
-el decodificador dado a nuestra disposición para el desarrollo de la actividad  (archivo InstDeco). Se emplearón los archivos de ALU (Unidad Logica de Aritmetica), la cual permitia hacer operaciones basicas como la adición,la sustración el corrimiento de bits, la comparación de variables entre otras.El archivo control permite los saltos de registro, controla los branches y los jumps.En memo se realiza el contro de la memoria y la memoria, permite hacer los loads y store. En el archivo TOP, en este se encuentran los otros bloques lógicos del diagrama, como son los jumps. Se inicializa una banco de registros de 32 direcciones con un tamaño de palabra de 32 bits. También se encuentra InstruccionMemo, la "memoria de instrucciones" que se encarga de cargar las intrucciones a simular en el procesador full. 
+Para la simulación y puesta en marcha del procesador se usarón 6 archivos, en los cuales podemos destacar el decodificador de instrucciones dado a nuestra disposición para el desarrollo de la actividad (archivo InstDeco). Se emplearon los archivos de ```ALU``` (unidad aritmético-lógica,), la cual permite hacer operaciones básicas como la adición, la resta, el corrimiento de bits, la comparación de variables entre otras. El archivo ```control``` permite los saltos de registro, controla los branches y los jumps. En ```Memo``` permite interactuar con la memoria donde se hace las operaciones load y store. En el archivo ```TOP```, en este se encuentran los otros bloques lógicos del diagrama, como son los jumps. Se inicializa una banco de registros de 32 direcciones con un tamaño de palabra de 32 bits. También se encuentra ```InstMemo```, la "memoria de instrucciones" que se encarga de cargar las intrucciones a simular en el procesador full. 
 
-Los módulos en scala se situan dentro de un archivo TOP el cual une los archivos nombrados
-anteriormente y con esto podemos simular y generar el  archivo en vivado que se usó para generar el testbench para 
-visualizar las salida del procesador en el GTK Wave
+Los módulos en scala se situan dentro de un archivo ```TOP``` el cual une los archivos nombrados anteriormente y con esto podemos simular y generar el  archivo en lenguaje verilog que se usó para generar el testbench para visualizar las salidas del procesador en el GTKWave.
 
 COMENTARIOS
 ----------------------
-1. Se realizo la correcion de los archivos del procesador(taller anterior), para corregir los bug en la salida, los cuales hacia que los corrieran y la salida se activara antes de tiempo mostrando por un pequeno instante un valor de salida erroneo.
+1. Se realizó la correción de los archivos del procesador (taller anterior), para corregir los bugs en la salida, los cuales hacía que los corrieran y la salida se activara antes de tiempo mostrando por un pequeno instante un valor de salida erróneo.
 
 2. El procesador se demora 1 ciclo de reloj en realizar una operación.
 
@@ -33,6 +30,7 @@ COMENTARIOS
 
 4. Ahora el procesador a ser completo permite las instrucciones de saltos de registro y de carga y lectura de una memoria.
 
+5. En ocasiones cuando solo utiliza operaciones de tipo store no aparece el bloque de memoria en las señales de GTKWave.
 
 
 LISTADO DE INSTRUCCIONES 
@@ -145,3 +143,9 @@ Programa:
 ```
 
 ![gtk_1](https://github.com/Computer-Architecture-I-UIS/full-processor-maryteam/blob/master/gtk1.png)
+
+
+CONCLUSIONES
+------------
+
+El lenguaje Chisel permite crear bloques de control para la operación deseada de un datapath con sus respectivos bloques lógicos. 
